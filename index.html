@@ -6,7 +6,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>lab-2-frontendutveckling</title>
   </head>
+
+
   <body>
+    <main class = "container">
+      <h1>Ramschema</h1>
+
+      <label>
+        Sök kurs:
+        <input type="text" id="search" placeholder="Sök på kurskod eller kursnamn"/>
+      </label>
+
+      <table>
+        <thead>
+            <tr>
+                <th data-sort="code">Kurskod</th>
+                <th data-sort="coursename">Kursnamn</th>
+                <th data-sort="progression">Progression</th>
+            </tr>
+        </thead>
+        <tbody id = "tableBody"></tbody>
+      </table>
+    </main>
     <div id="app"></div>
     <script type="module" src="/src/main.js"></script>
   </body>
