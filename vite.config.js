@@ -1,5 +1,5 @@
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  base: '/lab-2-frontendutveckling/',
+  base: '/Lab-2-Frontendutveckling/',
 })
