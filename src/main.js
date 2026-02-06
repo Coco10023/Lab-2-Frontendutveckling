@@ -53,3 +53,22 @@ function renderTable() {
   `).join("");
 }
 
+// Live-filtrering
+searchInput.addEventListener("input", renderTable);
+
+// Sortering vid klick
+headers.forEach(header => {
+  header.addEventListener("click", () => {
+    const key = header.dataset.sort;
+
+    if (key === sortKey) {
+      sortAsc = !sortAsc;
+    } else {
+      sortKey = key;
+      sortAsc = true;
+    }
+
+    renderTable();
+  });
+})
+
