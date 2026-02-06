@@ -27,3 +27,29 @@ async function fetchCourses() {
   }
 }
 
+// Render + filtrering + sortering
+function renderTable() {
+  const searchValue = searchInput.value.toLowerCase();
+
+  const filteredCourses = courses.filter(course =>
+    course.code.toLowerCase().includes(searchValue) ||
+    course.coursename.toLowerCase().includes(searchValue)
+  )
+  .sort((a, b) => {
+    const aVal = a[sortKey].toLowerCase();
+    const bVal = b[sortKey].toLowerCase();
+    
+    return sortAsc
+    ? aVal.localeCompare(bVal)
+    : bVal.localeCompare(aVal);
+  });
+
+  tableBody.innerHTML = filteredCourses.map(course => `
+    <tr>
+      <td>${course.code}</td>
+      <td>${course.progression}</td>
+      <td>${course.coursename}</td>
+    </tr>
+  `).join("");
+}
+
