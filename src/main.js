@@ -1,24 +1,29 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
-import viteLogo from '/vite.svg'
-import { setupCounter } from './counter.js'
+const url = "https://webbutveckling.miun.se/files/ramschema.json";
 
-document.querySelector('#app').innerHTML = `
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="${viteLogo}" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank">
-      <img src="${javascriptLogo}" class="logo vanilla" alt="JavaScript logo" />
-    </a>
-    <h1>Hello Vite!</h1>
-    <div class="card">
-      <button id="counter" type="button"></button>
-    </div>
-    <p class="read-the-docs">
-      Click on the Vite logo to learn more
-    </p>
-  </div>
-`
+const tableBody = document.getElementById("tableBody");
+const searchInput = document.getElementById("search");
+const headers = document.querySelectorAll("th[data-sort]");
 
-setupCounter(document.querySelector('#counter'))
+let courses = [];
+let sortKey = "code";
+let sortAsc = true;
+
+// FETCH + async/await + try/catch
+async function fetchCourses() {
+  try {
+    const response = await fetch(url);
+
+    if (!response.ok) {
+      throw new Error("Nätverksfel");
+    }
+
+    courses = await response.json();
+    renderTable();
+  } catch (error) {
+    console.error("Fel vid hämtning av data:", error);
+    tableBody.innerHTML = 
+      "<tr><td colspan='3'>Kunde inte hämta data</td></tr>";
+    console.error(error);
+  }
+}
+
