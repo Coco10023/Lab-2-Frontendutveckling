@@ -47,8 +47,8 @@ function renderTable() {
   tableBody.innerHTML = filteredCourses.map(course => `
     <tr>
       <td>${course.code}</td>
-      <td>${course.progression}</td>
       <td>${course.coursename}</td>
+      <td>${course.progression}</td>
     </tr>
   `).join("");
 }
@@ -71,4 +71,6 @@ headers.forEach(header => {
     renderTable();
   });
 })
+
+fetchCourses();
 
