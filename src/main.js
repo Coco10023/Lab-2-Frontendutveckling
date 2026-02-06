@@ -21,9 +21,7 @@ async function fetchCourses() {
     renderTable();
   } catch (error) {
     console.error("Fel vid hämtning av data:", error);
-    tableBody.innerHTML = 
-      "<tr><td colspan='3'>Kunde inte hämta data</td></tr>";
-    console.error(error);
+    tableBody.innerHTML = "<tr><td colspan='3'>Kunde inte hämta data</td></tr>";
   }
 }
 
